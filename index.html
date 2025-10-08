@@ -25,6 +25,10 @@
   };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
 </head>
 <body class="bg-bitter-light text-bitter-dark font-orbitron">
 
@@ -156,6 +160,46 @@
       </p>
     </div>
   </section>
+
+  <section id="workflow" class="bg-white py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Workflow Overview</h2>
+      <div class="bg-gray-100 p-4 rounded shadow">
+        <div class="mermaid">
+          flowchart TD
+
+            %% Tokenization
+            subgraph Tokenization
+              A[Asset Origination] --> B[Tokenization]
+              B --> C[Investor Onboarding]
+              C --> D[Smart Contract Deployment]
+              D --> E[Yield Distribution]
+            end
+
+            %% DAO Governance
+            subgraph DAO Governance
+              B --> F[Governance Setup]
+              F --> G[Proposal & Voting]
+              G --> F
+            end
+
+            %% RWA
+            subgraph RWA
+              A --> H[RWA Due Diligence]
+              H --> I[Asset Valuation]
+              I --> B
+            end
+
+            %% Styling
+            classDef process fill:#FFE3CC,stroke:#f9710f,stroke-width:2px,color:#4A2C0F;
+            classDef highlight fill:#f9710f,stroke:#4A2C0F,stroke-width:3px,color:#FFE3CC;
+
+            class A,C,D,E,F,G,H,I process;
+            class B highlight;
+      </div>
+    </div>
+  </section>
+
 
   <!-- Contact -->
   <section id="contact" class="bg-bitter py-16 px-6 text-white">
