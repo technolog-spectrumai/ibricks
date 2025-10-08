@@ -165,39 +165,80 @@
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Workflow Overview</h2>
       <div class="bg-gray-100 p-4 rounded shadow">
-        <div class="mermaid">
-          flowchart TD
+    <!-- Responsive Mermaid Flowchart -->
+    <div x-data="{ isMobile: window.innerWidth < 768 }" x-init="
+      window.addEventListener('resize', () => {
+        isMobile = window.innerWidth < 768;
+      });
+    ">
+      <!-- Mobile Mermaid (vertical) -->
+      <div x-show="isMobile" class="mermaid">
+        flowchart TD
 
-            %% RWA
-            subgraph RWA
-              A[Asset Origination] --> I[RWA Due Diligence]
-              I --> J[Asset Valuation]
-            end
+          %% RWA
+          subgraph RWA
+            A[Asset Origination] --> I[RWA Due Diligence]
+            I --> J[Asset Valuation]
+          end
 
-            %% Tokenization
-            subgraph Tokenization
-              J --> B[Tokenization]
-              B --> C[Investor Onboarding]
-              C --> D[Smart Contract Deployment]
-              D --> E[Yield Distribution]
-            end
+          %% Tokenization
+          subgraph Tokenization
+            J --> B[Tokenization]
+            B --> C[Investor Onboarding]
+            C --> D[Smart Contract Deployment]
+            D --> E[Yield Distribution]
+          end
 
-            %% DAO Governance
-            subgraph DAO Governance
-              B --> F[Governance Setup]
-              F --> G[Proposal Creation]
-              G --> H[Voting Process]
-              H --> F
-            end
+          %% DAO Governance
+          subgraph DAO Governance
+            B --> F[Governance Setup]
+            F --> G[Proposal Creation]
+            G --> H[Voting Process]
+            H --> F
+          end
 
-            %% Styling
-            classDef process fill:#FFE3CC,stroke:#f9710f,stroke-width:2px,color:#4A2C0F,shape:rect;
-            classDef highlight fill:#f9710f,stroke:#4A2C0F,stroke-width:3px,color:#FFE3CC,shape:rect;
+          %% Styling
+          classDef process fill:#FFE3CC,stroke:#f9710f,stroke-width:2px,color:#4A2C0F,shape:rect;
+          classDef highlight fill:#f9710f,stroke:#4A2C0F,stroke-width:3px,color:#FFE3CC,shape:rect;
 
-            class A,C,D,E,F,G,H,I,J process;
-            class B highlight;
-
+          class A,C,D,E,F,G,H,I,J process;
+          class B highlight;
       </div>
+
+      <!-- Desktop Mermaid (horizontal) -->
+      <div x-show="!isMobile" class="mermaid">
+        flowchart LR
+
+          %% RWA
+          subgraph RWA
+            A[Asset Origination] --> I[RWA Due Diligence]
+            I --> J[Asset Valuation]
+          end
+
+          %% Tokenization
+          subgraph Tokenization
+            J --> B[Tokenization]
+            B --> C[Investor Onboarding]
+            C --> D[Smart Contract Deployment]
+            D --> E[Yield Distribution]
+          end
+
+          %% DAO Governance
+          subgraph DAO Governance
+            B --> F[Governance Setup]
+            F --> G[Proposal Creation]
+            G --> H[Voting Process]
+            H --> F
+          end
+
+          %% Styling
+          classDef process fill:#FFE3CC,stroke:#f9710f,stroke-width:2px,color:#4A2C0F,shape:rect;
+          classDef highlight fill:#f9710f,stroke:#4A2C0F,stroke-width:3px,color:#FFE3CC,shape:rect;
+
+          class A,C,D,E,F,G,H,I,J process;
+          class B highlight;
+      </div>
+    </div>
     </div>
   </section>
 
