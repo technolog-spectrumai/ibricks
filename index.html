@@ -27,8 +27,24 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      themeCSS: `
+        .node text {
+          font-family: 'Orbitron', sans-serif;
+        }
+        .label {
+          font-family: 'Orbitron', sans-serif;
+        }
+      `
+    });
   </script>
+  <style>
+    .mermaid {
+      font-family: 'Orbitron', sans-serif !important;
+    }
+  </style>
 </head>
 <body class="bg-bitter-light text-bitter-dark font-orbitron">
 
@@ -172,7 +188,7 @@
       });
     ">
       <!-- Mobile Mermaid (vertical) -->
-      <div x-show="isMobile" class="mermaid">
+      <div x-show="isMobile" class="mermaid font-orbitron">
         flowchart TD
 
           %% RWA
@@ -206,7 +222,7 @@
       </div>
 
       <!-- Desktop Mermaid (horizontal) -->
-      <div x-show="!isMobile" class="mermaid">
+      <div class="mermaid font-orbitron">
         flowchart LR
 
           %% RWA
